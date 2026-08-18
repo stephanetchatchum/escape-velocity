@@ -1,32 +1,42 @@
-# delta-v
+# escape-velocity
 
 **A 300-project route from software engineering to computational science: space systems, Earth observation, and high performance computing.**
 
-![Progress](https://img.shields.io/badge/progress-0%2F300-blue)
+![Progress](https://img.shields.io/badge/progress-0%2F300-lightgrey)
 ![Stage](https://img.shields.io/badge/stage-1%20of%206-blue)
-![Focus](https://img.shields.io/badge/current%20focus-orbit%20propagator%20validation-orange)
+![Started](https://img.shields.io/badge/started-August%202026-blue)
 
 ---
 
-In orbital mechanics, delta-v is the budget of velocity change a spacecraft can afford. It is finite. Every burn you spend on a maneuver that does not take you somewhere is a burn you cannot spend on one that does.
+Escape velocity is the speed you need to leave a gravity well for good. Below it, you fall back no matter how hard you burn.
 
-That is the whole idea behind this repository. I am a software engineering student at African Leadership University in Kigali, working toward becoming a computational scientist in simulations, astrophysics and space technology. This is the route I am taking, in public, with the evidence attached.
+I am a software engineering student at African Leadership University in Kigali, from Cameroon, working toward becoming a computational scientist in simulations, astrophysics and space technology. There is a gap between where that starts and where it becomes self-sustaining, and this repository is my route across it, in public, with the evidence attached as it appears.
+
+**Day one is August 2026. Nothing here is built yet.** That is deliberate. A repository that starts empty and visibly fills up is a more honest record than one that arrives finished, and the log below is the point of the whole thing.
 
 ---
 
-## Completed work
+## Build log
 
-This is the part that matters. Everything below this section is a plan. This section is what actually exists.
+Newest first. One entry per week, whether or not the week went well.
+
+<!--
+Format: ### YYYY-MM-DD
+Then two or three bullets. Include the weeks where nothing shipped, and say why.
+An honest gap is more credible than a silent one.
+-->
+
+### Week 0, August 2026
+- Repository created. Curriculum rebuilt from a 300-project draft that taught computer science well and computational science badly.
+- Starting Stage 1, project 1: scientific units and dimensions library.
+
+## Shipped
+
+Nothing yet. A project appears in this table only when all five rules below are true for it.
 
 | # | Project | Phase | Code | Live | Validation |
 |---|---------|-------|------|------|------------|
-| 128 | Two-body orbit propagator | Astrodynamics | [repo](#) | [demo](#) | [Horizons error plot](#) |
-| 217 | Exoplanet transit classifier | ML for Science | [repo](#) | [demo](#) | [metrics](#) |
-
-<!--
-Add a row only when all five rules below are true for that project.
-Delete this comment block once the table has real entries.
--->
+| | | | | | |
 
 ## The five rules
 
@@ -38,15 +48,13 @@ A project is not finished when the code runs. It is finished when all five of th
 4. **Documented for a stranger.** Physics, method, assumptions, limitations, and one command that regenerates every figure.
 5. **Published where someone can reach it.** Streamlit, PyPI, crates.io, or Zenodo with a DOI. A private repository is not a portfolio.
 
-Twenty projects built to these five rules are worth more than three hundred built without them.
+Twenty projects built to these five rules are worth more than three hundred built without them. The count is not the goal. The count is the map.
 
-## How to read this repository
-
-There are two orderings, and they answer different questions.
+## Two orderings, and why
 
 **The phase order** is the reference structure: thirteen coherent bodies of knowledge, numbered 1 to 300. Use it to find where a topic lives.
 
-**The stage order** is the actual route: six stages that cut across phases so that every stage touches foundations, something physical, and something publishable at the same time. Working straight through 1 to 300 would mean eighteen months of toolkit before reaching anything showable. Use it to decide what to do next.
+**The stage order** is the actual route: six stages that cut across phases so that every stage touches foundations, something physical, and something publishable at the same time. Working straight through 1 to 300 would mean eighteen months of toolkit before producing anything showable, and the deadlines that matter do not wait that long. Use it to decide what to do next.
 
 Open [`tracker/index.html`](tracker/index.html) in a browser to switch between the two views and record progress. Progress is stored locally in the browser, so export it regularly.
 
@@ -54,7 +62,7 @@ Open [`tracker/index.html`](tracker/index.html) in a browser to switch between t
 
 | Stage | Window | Draws from | What must exist at the end |
 |-------|--------|-----------|----------------------------|
-| 1. Instrument yourself | Months 1 to 6 | Toolkit, C fundamentals, numerical core, testing, first orbits | A pip-installable toolkit, first C programs, and a propagator with a Horizons validation plot |
+| 1. Instrument yourself | Months 1 to 6 | Toolkit, C fundamentals, numerical core, testing, first orbits | A pip-installable toolkit, first C programs, and a propagator validated against JPL Horizons |
 | 2. Compiled languages and mechanics | Months 7 to 12 | C++, verified integrators, classical mechanics, reproducibility | A C++ N-body that beats the Python one, and a reproducible research repository |
 | 3. Astrodynamics and first parallel code | Months 13 to 19 | Rest of astrodynamics, OpenMP and MPI basics, Earth observation fundamentals | A complete mission design toolkit and a first scaling study |
 | 4. GNC, flight software and HPC | Months 20 to 26 | Guidance and control, advanced HPC, data engineering | A 6-DOF ADCS loop, embedded C on hardware, an MPI scaling report, a JOSS submission |
@@ -79,49 +87,78 @@ Open [`tracker/index.html`](tracker/index.html) in a browser to switch between t
 | 11 | Astronomy Data and Research Practice | 277 to 292 | 0/16 |
 | 12 | Open Source, Publication and Capstones | 293 to 300 | 0/8 |
 
-Projects 293 and 294, the open source contributions, are not stage bound. They run continuously from month three, because a merged pull request takes calendar time rather than effort time and it is the only item here that is externally verified.
+Projects 293 and 294, the open source contributions, are not stage bound. They run continuously from month three, because a merged pull request takes calendar time rather than effort time, and it is the only item here that is externally verified.
 
 ## Current focus
 
-<!-- Update this section every week. It is the first thing a returning visitor reads. -->
+<!-- Update this every week. It is the first thing a returning visitor reads, and a stale one reads as abandonment. -->
 
-**Stage 1.** Building the scientific toolkit and closing the compiled-language gap.
+**Stage 1, Phase 0.** Building the scientific toolkit that every later project imports.
 
-- In progress: project 128, two-body orbit propagator
-- Next: project 129, validation against JPL Horizons
-- Also running: project 19, memory model explorer in C
-- Open source: reading open issues in [package name]
+- **Now:** project 1, scientific units and dimensions library
+- **Next:** project 2, physical constants with uncertainties
+- **Compiled track:** not started. First C project is number 19
+- **Open source:** choosing a package to follow. Candidates: astropy, lightkurve, skyfield, python-sgp4
+
+## Specifications
+
+Full specifications live in [`docs/specs/`](docs/specs/). Each one states what you are building, what it teaches, where to find the reference material, what the edge cases are, and the definition of done.
+
+Specifications are written one block ahead of where I am working rather than all at once, because a specification written three years before it is needed is written against the wrong understanding of the problem.
+
+- [x] Phase 0, projects 1 to 18
+- [ ] Phase 1, projects 19 to 46
+- [ ] Phase 2, projects 47 to 78
 
 ## Repository structure
 
 ```
-delta-v/
+escape-velocity/
 ├── README.md
+├── LICENSE
+├── .gitignore
 ├── docs/
-│   ├── curriculum.pdf          # the full 300-project specification
-│   └── decisions/              # short notes on why the plan changed
+│   ├── curriculum.pdf           # the full 300-project specification
+│   ├── specs/                   # detailed per-project specs, written a block ahead
+│   └── decisions/               # short notes on why the plan changed and when
 ├── tracker/
-│   └── index.html              # interactive progress tracker
-├── toolkit/                    # the reusable library built in Phase 0
-│   ├── units/
-│   ├── timescales/
-│   ├── frames/
-│   └── tle/
-├── phase-01-compiled/
+│   └── index.html               # interactive progress tracker
+├── toolkit/                     # the installable package built across Phase 0
+│   ├── pyproject.toml
+│   ├── src/evkit/
+│   └── tests/
+├── phase-01-compiled/           # one directory per project from here on
 ├── phase-02-numerics/
-├── ...
-└── writeups/                   # monthly technical notes
+├── phase-03-software/
+├── phase-04-mechanics/
+├── phase-05-astrodynamics/
+├── phase-06-gnc/
+├── phase-07-hpc/
+├── phase-08-ml/
+├── phase-09-earth-observation/
+├── phase-10-physics/
+├── phase-11-astronomy/
+├── phase-12-capstones/
+├── writeups/                    # monthly technical notes
+└── scripts/
 ```
 
-Larger projects live in their own repositories and are linked from the completed work table rather than nested here. This repository is the index and the log, not a monolith.
+Larger projects graduate into their own repositories once they are worth installing or deploying, and get linked from the shipped table rather than staying nested here. This repository is the index and the log, not a monolith.
 
-## Why this version, and not the first one
+## How I work
 
-The first draft of this curriculum contained three hundred projects that taught computer science well and taught computational science badly. Out of three hundred entries, two touched a compiled language, open source contribution sat at project 294, and not a single project required validating a simulation against a reference.
+- One project at a time per track, and never more than three tracks at once.
+- No AI-generated code in this repository. Explanation and review are fine, generated solutions are not. The point is the learning, and outsourcing it defeats the exercise.
+- Every project starts by writing its definition of done, before any code.
+- Weekly entry in the build log, including the weeks where nothing shipped.
+
+## Why this version, and not the first draft
+
+The first draft contained three hundred projects that taught computer science well and computational science badly. Out of three hundred entries, two touched a compiled language, open source contribution sat at project 294, and not a single project required validating a simulation against a reference.
 
 The rebuild kept the count and changed what the projects produce.
 
-- Compiled languages went from 2 projects to 28. ICTP MHPC requires C, C++ or Fortran. Flight software in the sector is C or C++, increasingly Rust.
+- Compiled languages went from 2 projects to 28. ICTP MHPC requires C, C++ or Fortran. Flight software in this sector is C or C++, increasingly Rust.
 - High performance computing went from 2 projects to 22, ending in a written performance report rather than a working script.
 - Guidance, navigation and control went from roughly 4 projects to 18.
 - Ten verification projects were added across numerics and astrodynamics. A simulator without a validation plot is an animation.
@@ -131,7 +168,7 @@ Nothing was cut for being difficult. Things were cut for producing nothing anyon
 
 ## License
 
-Code in this repository is released under the MIT License. The curriculum text and write-ups are released under CC BY 4.0. Use any of it, and tell me if it helps.
+Code is released under the MIT License. Curriculum text and write-ups are released under CC BY 4.0. Use any of it, and tell me if it helps.
 
 ## Contact
 
