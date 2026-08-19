@@ -68,4 +68,12 @@ class Quantity:
     def __neg__(self):
         return Quantity(-self.value, self.base_unit)
 
-    
+BASE_UNITS = {
+    'm'  : Quantity(1, (1,0,0,0,0,0,0)), # length (Metres)
+    'kg' : Quantity(1, (0,1,0,0,0,0,0)), # mass (Kilograms)
+    's'  : Quantity(1, (0,0,1,0,0,0,0)), # time (Seconds)
+    'I'  : Quantity(1, (0,0,0,1,0,0,0)), # Electric current (Amperes)
+    'K'  : Quantity(1, (0,0,0,0,1,0,0)), # Thermodynamic Temperature (Kelvin)
+    'mol': Quantity(1, (0,0,0,0,0,1,0)), # Amount of substance (Mole)
+    'cd' : Quantity(1, (0,0,0,0,0,0,1))  # Luminous intensity (Candela)
+}
