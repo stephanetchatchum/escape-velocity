@@ -95,6 +95,9 @@ class Quantity:
     def __neg__(self):
         return Quantity(-self.value, self.base_unit)
 
+    def __pow__(self, power):
+        return Quantity(self.value ** power, tuple(u * power for u in self.base_unit))
+
 
 BASE_UNITS = {
     'm'  : Quantity(1, (1,0,0,0,0,0,0)), # length (Metres)
@@ -118,6 +121,10 @@ COMPOUND_UNITS = {
     'Ω' : Quantity(1, (1,2,-3,-2,0,0,0)), # Electric Resistance (Ohm)
     'T' : Quantity(1, (0,1,-2,-1,0,0,0)), # Magnetic Field (Tesla)
     'Hz' : Quantity(1, (0,0,-1,0,0,0,0)), # Frequency (Hertz)
+
+    'au' : Quantity(1.495978707*(10**11), (1,0,0,0,0,0,0)), # Astronamical Unit
+    'ly' : Quantity(9.4607304725808*(10**15), (1,0,0,0,0,0,0)), # Light Year
+    'pc' : Quantity(3.08567758149137*(10**16), (1,0,0,0,0,0,0)), # Parsec
 }
 
 KNOWN_UNITS = {**BASE_UNITS, **COMPOUND_UNITS}
