@@ -1,3 +1,5 @@
+import re
+
 class DimensionError(Exception):
     pass
 
@@ -98,12 +100,18 @@ class Quantity:
     def __pow__(self, power):
         return Quantity(self.value ** power, tuple(u * power for u in self.base_unit))
 
+    def __repr__(self):
+        if self.base_unit in REVERSE_LOOKUP:
+            return f"{self.value} {REVERSE_LOOKUP.get(self.value)}"
+        else:
+            return f"{self.value} {self.base_unit}"
+
 
 BASE_UNITS = {
     'm'  : Quantity(1, (1,0,0,0,0,0,0)), # length (Metres)
     'kg' : Quantity(1, (0,1,0,0,0,0,0)), # mass (Kilograms)
     's'  : Quantity(1, (0,0,1,0,0,0,0)), # time (Seconds)
-    'I'  : Quantity(1, (0,0,0,1,0,0,0)), # Electric current (Amperes)
+    'A'  : Quantity(1, (0,0,0,1,0,0,0)), # Electric current (Amperes)
     'K'  : Quantity(1, (0,0,0,0,1,0,0)), # Thermodynamic Temperature (Kelvin)
     'mol': Quantity(1, (0,0,0,0,0,1,0)), # Amount of substance (Mole)
     'cd' : Quantity(1, (0,0,0,0,0,0,1)),  # Luminous intensity (Candela)
@@ -118,7 +126,7 @@ COMPOUND_UNITS = {
     'Pa' : Quantity(1, (-1,1,-2,0,0,0,0)),# Pressure (Pascal)
     'C' : Quantity(1, (0,0,1,1,0,0,0)),   # Electric Charge (Coulomb)
     'V' : Quantity(1, (2,1,-3,-1,0,0,0)), # Electric Potential (Volt)
-    'Ω' : Quantity(1, (1,2,-3,-2,0,0,0)), # Electric Resistance (Ohm)
+    'Ω' : Quantity(1, (2,1,-3,-2,0,0,0)), # Electric Resistance (Ohm)
     'T' : Quantity(1, (0,1,-2,-1,0,0,0)), # Magnetic Field (Tesla)
     'Hz' : Quantity(1, (0,0,-1,0,0,0,0)), # Frequency (Hertz)
 
@@ -129,26 +137,40 @@ COMPOUND_UNITS = {
 
 KNOWN_UNITS = {**BASE_UNITS, **COMPOUND_UNITS}
 
-REVERSE_LOOKUP = {
-    (1,0,0,0,0,0,0): 'm',
-    (0,1,0,0,0,0,0): 'kg',
-    (0,0,1,0,0,0,0): 's',
-    (0,0,0,1,0,0,0): 'I',
-    (0,0,0,0,1,0,0): 'K',
-    (0,0,0,0,0,1,0): 'mol',
-    (0,0,0,0,0,0,1): 'cd',
-    (1,1,-2,0,0,0,0): 'N',
-    (2,1,-2,0,0,0,0): 'J',
-    (2,1,-3,0,0,0,0): 'W',
-    (-1,1,-2,0,0,0,0): 'Pa',
-    (0,0,1,1,0,0,0): 'C',
-    (2,1,-3,-1,0,0,0): 'V',
-    (2,1,-3,-2,0,0,0): 'Ω',
-    (0,1,-2,-1,0,0,0): 'T',
-    (0,0,-1,0,0,0,0): 'Hz',
-}
+REVERSE_LOOKUP = {q.base_unit: symbol for symbol, q in KNOWN_UNITS.items()}
+
+def parse_single_token(token):
+    token = token.strip()
+    if not token:
+        raise ValueError("Empty token")
+
+    match = re.match(r'^([a-zA-Zμ°]+)([\^]?)(\d*)$', token)
+    if not match:
+        raise ValueError(f"Invalid token format: {token}")
+
+    unit_part = match.group(1)
+    exponent_str = match.group(3)
+    power = int(exponent_str) if exponent_str else 1
+
+    if unit_part in KNOWN_UNITS:
+        base_quantity = KNOWN_UNITS[unit_part]
+    else:
+        found = False
+        for prefix, scale in prefixes.items():
+            if unit_part.startswith(prefix):
+                remainder = unit_part[len(prefix):]
+                if remainder in KNOWN_UNITS:
+                    base_quantity = scale * KNOWN_UNITS[remainder]
+                    found = True
+                    break
+        if not found:
+            raise ValueError(f"Unknown unit: {unit_part}")
+
+    return base_quantity ** power
 
 def parse_unit(unit_str):
+    unit_str = unit_str.strip()
+    
     if unit_str in KNOWN_UNITS:
         return KNOWN_UNITS[unit_str]
 
